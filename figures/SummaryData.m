@@ -10,7 +10,8 @@ category = data(:,1);
 
 #h = figure
 subplot(2,2,4);
-scatter3(usability, deployability, security, 10, category, "filled");
+h = scatter3(usability, deployability, security, 10, category, "filled");
+colormap('jet');
 xlabel ("Usability", "fontsize", fontsize, "fontweight", "bold");
 axis("ij");
 ylabel ("Deployability", "fontsize", fontsize, "fontweight", "bold");
@@ -37,8 +38,9 @@ axis("nolabel");
 
 subplot(2,2,4);
 [~, I] = unique(category); %
-p = findobj(gca,'Type','Patch');
-I = flipud(I);
+p = findobj(h,'Type','Patch');
+#I = flipud(I);
+I = 37 - I;
 legend(p(I),name, "location", "northeast", "orientation", "vertical");
 
 annotation("textbox", [.12 .545 .3 .3], "String", "Low", "linestyle", "none", "fontsize", fontsizeaxis);
